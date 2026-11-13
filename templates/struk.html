@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Struk #{{ trx.id }}{% endblock %}
+{% block content %}
+<div class="struk">
+  <p class="center"><strong>{{ toko }}</strong><br>Jl. Contoh No. 1</p>
+  <hr>
+  <p>No: {{ "%05d"|format(trx.id) }}<br>Tgl: {{ trx.waktu }}</p>
+  <hr>
+  {% for d in detail %}
+    <p>{{ d.nama }}<br>
+      <span>{{ d.jumlah }} x {{ d.harga|rp }}</span><span class="right">{{ d.subtotal|rp }}</span></p>
+  {% endfor %}
+  <hr>
+  <p><span>TOTAL</span><span class="right">{{ trx.total|rp }}</span><br>
+     <span>BAYAR</span><span class="right">{{ trx.bayar|rp }}</span><br>
+     <span>KEMBALI</span><span class="right">{{ trx.kembali|rp }}</span></p>
+  <hr>
+  <p class="center">Terima kasih atas kunjungan Anda</p>
+</div>
+<p class="no-print center">
+  <button onclick="window.print()">Cetak Struk</button>
+  <a href="{{ url_for('index') }}">Transaksi baru</a>
+</p>
+{% endblock %}

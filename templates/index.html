@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Kasir Penjualan</h1>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+<form method="post" action="{{ url_for('checkout') }}">
+  <table>
+    <thead><tr><th>Produk</th><th>Harga</th><th>Stok</th><th>Jumlah</th></tr></thead>
+    <tbody>
+    {% for p in produk %}
+      <tr>
+        <td>{{ p.nama }}</td>
+        <td class="num">{{ p.harga|rp }}</td>
+        <td class="num">{{ p.stok }}</td>
+        <td><input type="number" name="qty_{{ p.id }}" min="0" max="{{ p.stok }}" value="0"
+                   data-harga="{{ p.harga }}" aria-label="Jumlah {{ p.nama }}"></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="total">Total: <span id="total">Rp 0</span></p>
+  <label>Uang bayar (Rp) <input type="number" name="bayar" min="0" required></label>
+  <button type="submit">Bayar &amp; Cetak Struk</button>
+</form>
+<script>
+  // Tampilkan total sementara; perhitungan resmi tetap di server.
+  const inputs = document.querySelectorAll("input[data-harga]");
+  const fmt = n => "Rp " + n.toLocaleString("id-ID");
+  function hitung() {
+    let t = 0;
+    inputs.forEach(i => t += (parseInt(i.value) || 0) * i.dataset.harga);
+    document.getElementById("total").textContent = fmt(t);
+  }
+  inputs.forEach(i => i.addEventListener("input", hitung));
+</script>
+{% endblock %}

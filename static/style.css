@@ -1,0 +1,24 @@
+body { font-family: system-ui, sans-serif; margin: 0; background: #f5f5f4; color: #1c1917; }
+header { display: flex; justify-content: space-between; padding: 12px 16px; background: #1c1917; color: #fff; }
+header a { color: #fff; margin-left: 16px; }
+main { max-width: 720px; margin: 0 auto; padding: 16px; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: 8px; border-bottom: 1px solid #e7e5e4; text-align: left; }
+.num { text-align: right; }
+input[type=number] { width: 80px; padding: 6px; }
+label { display: block; margin: 12px 0; }
+button { padding: 10px 16px; background: #15803d; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
+.total { font-size: 1.25rem; font-weight: bold; }
+.error { background: #fee2e2; color: #991b1b; padding: 8px 12px; border-radius: 4px; }
+.center { text-align: center; }
+
+.struk { width: 300px; margin: 0 auto; padding: 12px; background: #fff; font-family: "Courier New", monospace; font-size: 13px; }
+.struk p { margin: 4px 0; overflow: hidden; }
+.struk hr { border: 0; border-top: 1px dashed #000; }
+.right { float: right; }
+
+@media print {
+  .no-print { display: none; }
+  body { background: #fff; }
+  .struk { width: 58mm; padding: 0; }
+}

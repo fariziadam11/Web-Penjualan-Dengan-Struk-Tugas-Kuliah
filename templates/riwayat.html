@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Riwayat Transaksi</h1>
+{% if daftar %}
+<table>
+  <thead><tr><th>No</th><th>Waktu</th><th>Total</th><th></th></tr></thead>
+  <tbody>
+  {% for t in daftar %}
+    <tr>
+      <td>{{ "%05d"|format(t.id) }}</td><td>{{ t.waktu }}</td><td class="num">{{ t.total|rp }}</td>
+      <td><a href="{{ url_for('struk', tid=t.id) }}">Lihat struk</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Belum ada transaksi.</p>
+{% endif %}
+{% endblock %}
